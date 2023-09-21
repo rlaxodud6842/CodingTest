@@ -1,30 +1,35 @@
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
-//https://www.acmicpc.net/problem/10809
+// https://www.acmicpc.net/problem/10809
 public class Main {
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        String str = sc.next();
-
-        char[] ch = str.toCharArray();
-        int[] answer = new int[26];
-        for(int i=0; i<answer.length; i++) {
-            answer[i] = -1;
-        }
-
-        for(int i=0; i<ch.length; i++) {
-            int n = ch[i] - 97;
-            if(answer[n] == -1) {
-                answer[n] = i;
+        try{
+            HashMap<Character,Integer> indexMap = new HashMap<>();
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i<26; i++){
+                char alpahbet = (char)(97+i);
+                indexMap.put(alpahbet,-1);
             }
-        }
+            String sentence = sc.nextLine();
+            for (int i = 0; i <sentence.length() ; i++){
+                char index = sentence.charAt(i);
 
-        for(int i=0; i<answer.length; i++) {
-            System.out.print(answer[i]+" ");
-        }
+                if(indexMap.get(index) == -1){
+                    indexMap.put(index,i);
+                }
+            }
 
+            for(int i = 0; i<26; i++){
+                char alpahbet = (char)(97+i);
+                sb.append(indexMap.get(alpahbet)+" ");
+            }
+            sb.deleteCharAt(sb.length()-1);
+            System.out.println(sb);
+
+
+        }catch (Exception e){
+        }
     }
 }
