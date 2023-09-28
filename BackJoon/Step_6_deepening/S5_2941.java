@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Stack;
 
-// https://www.acmicpc.net/problem/2941
+// https://www.acmicpc.net/problem/2491
 public class Main {
 
     public static void main(String[] args)throws Exception {
@@ -16,7 +16,7 @@ public class Main {
 
         for(int i = 0; i <sentence.length(); i++){
             char currentElement = sentence.charAt(i);
-            if( currentElement == '=' && !stack.isEmpty() ){   // =인지 판별하는 if문 등장 -> 검문관
+            if(currentElement == '=' && !stack.isEmpty() ){   // =인지 판별하는 if문 등장 -> 검문관
                 if(stack.peek() == 'c'|| stack.peek() == 's'){ //c냐 s냐 는 그냥 판별
                     counter +=1;
                     stack.pop(); // 빼고, 현재 원소는 넣지 않으니까 뺄 필요도 x
@@ -33,6 +33,8 @@ public class Main {
                     }
                     counter += stack.size();
                     stack.clear();
+                }else{
+                    stack.push(currentElement);
                 }
             }else if (!stack.isEmpty() &&currentElement == 'j' ){// j인지 판별하는 if문 등장 -> 검문관
                 if(stack.peek() == 'l'|| stack.peek() == 'n'){
@@ -41,7 +43,8 @@ public class Main {
 
                     counter += stack.size();
                     stack.clear();
-
+                }else{
+                    stack.push(currentElement);
                 }
             }else if (currentElement== '-' && !stack.isEmpty() ){// j인지 판별하는 if문 등장 -> 검문관
                 if(stack.peek() == 'c'|| stack.peek() == 'd'){
@@ -49,6 +52,8 @@ public class Main {
                     stack.pop(); // 빼고, 현재 원소는 넣지 않으니까 뺄 필요도 x
                     counter += stack.size();
                     stack.clear();
+                }else{
+                    stack.push(currentElement);
                 }
             }
             else{
