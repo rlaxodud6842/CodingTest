@@ -1,85 +1,62 @@
 import java.io.*;
-import java.util.HashMap;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
 // https://www.acmicpc.net/problem/2941
-
 public class Main {
-    public static int croatiaCount(String sentence){
-        int croatiaCount = 0;
 
-        for(int i = 0; i<sentence.length();i++) {
-            char nowElement = sentence.charAt(i); //0부터 문장 길이 까지 char형으로 저장.
-            if (nowElement == 'c') { //현재 온게 c? 그리고 뒤에놈이 -,=냐
-                if (sentence.charAt(i + 1) == '-' || sentence.charAt(i + 1) == '=') {
-                    croatiaCount += 1;
-                    i +=1;
-                }else{
-                    croatiaCount += 1;
+    public static void main(String[] args)throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String sentence = br.readLine();
+        int answer = solve(sentence);
+        System.out.println(answer);
+    }
+    public static int solve(String sentence){
+        Stack<Character> stack = new Stack<>();
+        int counter = 0;
+
+        for(int i = 0; i <sentence.length(); i++){
+            char currentElement = sentence.charAt(i);
+            if( currentElement == '=' && !stack.isEmpty() ){   // =인지 판별하는 if문 등장 -> 검문관
+                if(stack.peek() == 'c'|| stack.peek() == 's'){ //c냐 s냐 는 그냥 판별
+                    counter +=1;
+                    stack.pop(); // 빼고, 현재 원소는 넣지 않으니까 뺄 필요도 x
+
+                    counter += stack.size();
+                    stack.clear();
+                }else if(stack.peek() == 'z'){ //앞에놈 z냐?
+                    stack.pop(); //z 들어올리고
+                    if(!stack.isEmpty() && stack.peek() == 'd'){
+                        counter +=1;
+                        stack.pop();
+                    }else{ //만약 앞에놈이 d가 아니면, 이미 pop 해놨기 때문에 그냥 카운터만 올리기.
+                        counter +=1;
+                    }
+                    counter += stack.size();
+                    stack.clear();
                 }
-            }else if (nowElement == 'd') { //현재놈이 d?
-                if (sentence.charAt(i + 1) == '-') {
-                    croatiaCount += 1;
-                    i +=1;
-                } else if (sentence.charAt(i + 1) == 'z' && sentence.charAt(i + 2) == '='){
-                    croatiaCount += 1;
-                    i += 2;
-                }else{
-                    croatiaCount += 1;
+            }else if (!stack.isEmpty() &&currentElement == 'j' ){// j인지 판별하는 if문 등장 -> 검문관
+                if(stack.peek() == 'l'|| stack.peek() == 'n'){
+                    counter +=1;
+                    stack.pop(); // 빼고, 현재 원소는 넣지 않으니까 뺄 필요도 x
+
+                    counter += stack.size();
+                    stack.clear();
+
                 }
-            } else if (nowElement == 'l') { //현재놈이 l
-                if (sentence.charAt(i + 1) == 'j') {
-                    croatiaCount += 1;
-                    i +=1;
-                }else{
-                    croatiaCount += 1;
+            }else if (currentElement== '-' && !stack.isEmpty() ){// j인지 판별하는 if문 등장 -> 검문관
+                if(stack.peek() == 'c'|| stack.peek() == 'd'){
+                    counter +=1;
+                    stack.pop(); // 빼고, 현재 원소는 넣지 않으니까 뺄 필요도 x
+                    counter += stack.size();
+                    stack.clear();
                 }
-            } else if (nowElement == 'n') { //현재놈이 n
-                if (sentence.charAt(i + 1) == 'j') {
-                    croatiaCount += 1;
-                    i +=1;
-                }else{
-                    croatiaCount += 1;
-                }
-            } else if (nowElement == 's') {
-                if (sentence.charAt(i+1) == '=') {
-                    croatiaCount += 1;
-                    i +=1;
-                }else{
-                    croatiaCount += 1;
-                }
-            } else if (nowElement == 'z') { //현재놈이 l
-                if (sentence.charAt(i+1) == '=') {
-                    croatiaCount += 1;
-                    i +=1;
-                }else{
-                    croatiaCount += 1;
-                }
-            }else{
-                System.out.println("ha");
-                croatiaCount += 1;
+            }
+            else{
+                stack.push(currentElement);
             }
         }
-        return croatiaCount;
+        counter += stack.size();
+
+        return counter;
     }
-
-
-    public static void main(String[] args) {
-        try{
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String sentence = st.nextToken();
-
-            bw.write(String.valueOf(croatiaCount(sentence)));
-            bw.flush();
-            bw.close();
-            br.close();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
 }
