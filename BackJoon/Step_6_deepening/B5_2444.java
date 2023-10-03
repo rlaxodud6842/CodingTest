@@ -16,7 +16,6 @@ public class Main {
         }
 
         for(int i = 1; i<repeat; i++){
-
             StringBuilder sb1 = new StringBuilder();
             int nullCounter = N - i;
             int starCounter = 2*i -1;
