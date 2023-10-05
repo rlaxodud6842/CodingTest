@@ -3,6 +3,7 @@ import java.util.*;
 
 // https://www.acmicpc.net/problem/10988
 // 행렬 이해도 부족, 출력부분 약함.
+//https://propercoding.tistory.com/316 참고 코드
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
