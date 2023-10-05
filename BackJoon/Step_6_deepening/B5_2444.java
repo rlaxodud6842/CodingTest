@@ -1,42 +1,58 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
+<<<<<<< Updated upstream
 // https://www.acmicpc.net/problem/2444
 public class Main {
+=======
+public class Main{
+    public static void main(String[] args) throws Exception{
+        try{int x,y;
+>>>>>>> Stashed changes
 
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int N = Integer.parseInt(sc.nextLine());
+            Scanner sc = new Scanner(System.in);
+            StringTokenizer st = new StringTokenizer(sc.nextLine());
 
-        String[] star = new String[N+1];
-        int repeat = 2*N-1;
+            x = Integer.parseInt(st.nextToken());
+            y = Integer.parseInt(st.nextToken());
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        if (N == 1){
-            System.out.println("*");
-        }
-
-        for(int i = 1; i<repeat; i++){
-            StringBuilder sb1 = new StringBuilder();
-            int nullCounter = N - i;
-            int starCounter = 2*i -1;
-
-            while(nullCounter != 0){
-                sb1.append(" ");
-                nullCounter--;
-            }
-            while(starCounter != 0){
-                sb1.append("*");
-                starCounter--;
-            }
-            System.out.println(sb1);
-            star[i] = String.valueOf(sb1);
-            if(i == N){
-                for(int t = i; t > 1; t--){
-                    String temp = star[t-1];
-                    System.out.println(temp);
+            int[][] arr1 = new int[x][y];
+            for (int i = 0; i<x; i++){
+                StringTokenizer st1 = new StringTokenizer(br.readLine());
+                for(int t = 0; t<y; t++){
+                    arr1[i][t] = Integer.parseInt(st1.nextToken());
                 }
-                break;
             }
+<<<<<<< Updated upstream
         }
         sc.close();
     }
 }
+=======
+            int[][] arr2 = new int[x][y];
+            for (int i = 0; i<x; i++){
+                StringTokenizer st2 = new StringTokenizer(br.readLine());
+                for(int t = 0; t<y; t++){
+                    arr2[i][t] = Integer.parseInt(st2.nextToken());
+                }
+            }
+            for (int i = 0; i<x; i++){
+                for(int t = 0; t<y; t++){
+                    sb.append(arr1[i][t]+arr2[i][t]);
+                    if(t != 3){
+                        sb.append(" ");
+                    }
+
+                }
+                sb.append("\n");
+            }
+            System.out.println(sb);
+        }catch(Exception e){
+
+        }}
+}
+>>>>>>> Stashed changes
