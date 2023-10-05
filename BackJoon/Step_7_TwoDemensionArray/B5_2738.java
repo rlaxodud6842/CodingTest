@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-// https://www.acmicpc.net/problem/10988
+// https://www.acmicpc.net/problem/2738
 // 행렬 이해도 부족, 출력부분 약함.
 //https://propercoding.tistory.com/316 참고 코드
 public class Main {
