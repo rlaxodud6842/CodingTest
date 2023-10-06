@@ -1,7 +1,6 @@
 import java.io.*;
 
 // https://www.acmicpc.net/problem/10798
-
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,8 +22,9 @@ public class Main {
         for (int i = 0; i < 15; i++) { //찾는 반복문
             for (int j = 0; j < 5; j++) {
                 String element = String.valueOf(arr[j][i]);
-                if (!String.valueOf(arr[j][i]).isEmpty()){
-                    sb.append(element);}
+                if (arr[j][i] != 0){
+                    sb.append(element);
+                }
             }
         }
         System.out.println(sb);
