@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 // https://www.acmicpc.net/problem/10798
 public class Main {
@@ -6,6 +7,13 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         char[][] arr = new char[5][15];
         StringBuilder sb = new StringBuilder();
+
+        StringTokenizer st;
+        st = new StringTokenizer(br.readLine())
+        st = new StringTokenizer(br.readLine())
+        st = new StringTokenizer(br.readLine())
+
+
 
         for (int i = 0; i < 5; i++) {
             String nowToy = br.readLine();
