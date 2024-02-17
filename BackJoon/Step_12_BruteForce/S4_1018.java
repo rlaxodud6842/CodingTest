@@ -21,6 +21,7 @@ public class Main {
         }
         System.out.println(sol);
         sc.close();
+
     }
     public static Integer getSolution(int startRow,int startCol,String board[]){
         String[] orgBoard = {"BWBWBWBW","WBWBWBWB"};
