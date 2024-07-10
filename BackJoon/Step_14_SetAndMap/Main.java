@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,21 +10,22 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        ArrayList<String> pocketLog = new ArrayList<>();
+        HashMap<String,Integer> pocketStringLog = new HashMap<>();
+        HashMap<Integer,String> pocketIntegerLog = new HashMap<>();
         String[] answerArray = new String[M];
+
         for (int i = 0; i < N; i++){
             String pocketMon = br.readLine();
-            pocketLog.add(pocketMon);
+            pocketStringLog.put(pocketMon,i + 1);
+            pocketIntegerLog.put(i + 1,pocketMon);
         }
         for (int i = 0; i < M; i++){
             String exam = br.readLine();
-            int examIndex = 0;
             try{
-                examIndex = Integer.parseInt(exam);
-                answerArray[i] = pocketLog.get(examIndex);
+                int examNumber = Integer.parseInt(exam);
+                answerArray[i] = pocketIntegerLog.get(examNumber);
             }catch(NumberFormatException e){
-                examIndex = pocketLog.indexOf(exam);
-                answerArray[i] = String.valueOf(examIndex);
+                answerArray[i] = String.valueOf(pocketStringLog.get(exam));
             }
         }
         for (String element : answerArray){
