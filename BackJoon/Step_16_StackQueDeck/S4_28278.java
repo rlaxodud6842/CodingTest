@@ -3,39 +3,42 @@ import java.io.InputStreamReader;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.StringTokenizer;
-
+// System.out.println 보다 sb에 쌓아두고 배출하는게 더 간편.
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
         Stack<String> myStack = new Stack<>();
         int N = Integer.parseInt(br.readLine());
         for (int i = 0; i < N; i++){
+            
             st = new StringTokenizer(br.readLine());
             String command = st.nextToken();
             if(command.equals("1")){
                 myStack.add(st.nextToken());
             }else if(command.equals("2")){
                 try{
-                    System.out.println(myStack.pop());
+                    sb.append(myStack.pop()+"\n");
                 }catch(EmptyStackException e){
-                    System.out.println("-1");
+                    sb.append("-1"+"\n");
                 }
             }else if(command.equals("3")){
-                System.out.println(myStack.size());
+                sb.append(myStack.size()+"\n");
             }else if(command.equals("4")){
                 if (myStack.isEmpty()){
-                    System.out.println("1");
+                    sb.append("1"+"\n");
                 }else{
-                    System.out.println("0");
+                    sb.append("0"+"\n");
                 }
             }else if(command.equals("5")){
                 try{
-                    System.out.println(myStack.peek());
+                    sb.append(myStack.peek()+"\n");
                 }catch(EmptyStackException e){
-                    System.out.println("-1");
+                    sb.append("-1"+"\n");
                 }
             }
         }
+        System.out.println(sb);
     }
 }
