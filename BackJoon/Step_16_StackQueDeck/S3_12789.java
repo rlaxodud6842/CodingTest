@@ -6,30 +6,31 @@ import java.util.Stack;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        String[] arr = br.readLine().split(" ");
+        int N =Integer.parseInt(br.readLine());
         Stack<Integer> myStack = new Stack<>();
+        String[] numberArr = br.readLine().split(" ");
         int index = 1;
         String answer = "Nice";
-        
+
         for (int i = 0; i < N; i++){
-            int currentNumber = Integer.parseInt(arr[i]);
-            if (index != currentNumber){
+            int nowNumber = Integer.parseInt(numberArr[i]);
+            if(index != nowNumber){
                 if(!myStack.isEmpty() && myStack.peek() == index){
                     index++;
                     i--;
                     myStack.pop();
                 }else{
-                    myStack.push(currentNumber);
+                    myStack.push(nowNumber);
                 }
             }else{
                 index++;
             }
         }
 
-        while(!myStack.isEmpty()) {
-            int lastNumber = myStack.pop();
-            if (lastNumber == index){
+
+        while(!myStack.isEmpty()){
+            int popedNumber = myStack.pop();
+            if(popedNumber == index){
                 index++;
             }else{
                 answer = "Sad";
