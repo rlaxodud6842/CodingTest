@@ -1,35 +1,43 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br =
-                new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw =
-                new BufferedWriter(new OutputStreamWriter(System.out));
+    public static void main(String[] args) throws Exception {
+        BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        Deque<Integer> myDeque = new ArrayDeque<>();
+
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-        Deque<Integer> deque = new ArrayDeque<>();
-
-        // arr[i][0] = 0이면 큐, 1이면 스택
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+        int[] dataStruct = new int[N];
+        
+        // 스택인지 큐인지 판단.
+        StringTokenizer input1 = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++){
+            dataStruct[i] = Integer.parseInt(input1.nextToken());
         }
-        // 스택에 대해선 신경쓸 필요가 없으므로 큐 자료구조인 것만 저장
-        st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++) {
-            int num = Integer.parseInt(st.nextToken());
-            if (arr[i] == 0)
-                deque.addLast(num);
+        // 초기 값 넣기. 스택은 어짜피 온거 그대로 넘기니까 생각 하지말자.
+        StringTokenizer input2 = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++){
+            int number = Integer.parseInt(input2.nextToken());
+            if(dataStruct[i] == 0){
+                myDeque.addLast(number);
+            }
         }
-
         int M = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
-        for(int i=0; i<M; i++) {
-            deque.addFirst(Integer.parseInt(st.nextToken()));
-            bw.write(deque.pollLast()+" ");
+        StringTokenizer input3 = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < M; i++){
+            int number = Integer.parseInt(input3.nextToken());
+            myDeque.addFirst(number);
         }
-        bw.flush();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < M; i++){
+            sb.append(myDeque.removeLast() + " ");
+        }
+        System.out.println(sb);
     }
 }
