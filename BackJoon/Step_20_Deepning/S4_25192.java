@@ -7,18 +7,18 @@ public class Main {
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
-        HashSet<String> enterSet = new HashSet<>();
-        int counter = 0;
+        int gomCounter = 0;
+        HashSet<String> mySet = new HashSet<>();
         for (int i = 0; i < N; i++){
             String message = br.readLine();
-            if(message.equals("ENTER")){
-                counter += enterSet.size();
-                enterSet = new HashSet<>();
+            if (message.equals("ENTER")){
+                gomCounter += mySet.size();
+                mySet = new HashSet<>();
             }else{
-                enterSet.add(message);
+                mySet.add(message);
             }
         }
-        counter += enterSet.size();
-        System.out.println(counter);
+        gomCounter += mySet.size();
+        System.out.println(gomCounter);    
     }
 }
